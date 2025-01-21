@@ -1,43 +1,13 @@
-let auth0 = null;
+const button = document.getElementById('log');
+  button.addEventListener('click', function() {
+    prompt("Please enter the password for authorized access or press 'Cancel' to cancel the login process.");
+  });
 
-async function initAuth0() {
-    auth0 = await createAuth0Client({
-        domain: "dev-18mooqg1v2x7qj4k.us.auth0.com",
-        client_id: "9YL8rKoGTsTjk1F14k7QlLjHJpKTykYf"
-    });
-
-    const query = window.location.search;
-    if (query.includes("code=") && query.includes("state=")) {
-        await auth0.handleRedirectCallback();
-        window.history.replaceState({}, document.title, window.location.pathname);
+  if(prompt("Please enter the password for authorized access or press 'Cancel' to cancel the authorization process.") == "pagefruit599"){
+alert("Access has been granted."); 
+document.write("The list of current names, numbers, and IP's caught here:")
+document.write("John Mercer, 555, 821, 4739, 192.168.1.23, Samantha Blake, 555, 914, 6573, 172.16.4.12, Liam O’Connor, 555, 328, 4921, 10.0.0.5, Emily Weston, 555, 672, 1058, 192.168.0.45, Michael Torres, 555, 748, 2394, 172.16.9.11, Olivia Hartman, 555, 293, 8710, 192.168.1.87, Ethan Caldwell, 555, 802, 5417, 10.0.0.67, Sophia Martinez, 555, 412, 3847, 172.16.3.15, Jacob Winslow, 555, 129, 7654, 192.168.0.34, Ava Robinson, 555, 978, 2416, 10.0.1.24, Benjamin Hayes, 555, 364, 9825, 172.16.5.16, Mia Cooper, 555, 743, 6219, 192.168.1.10, Noah Foster, 555, 896, 5472, 10.0.2.22, Charlotte Reed, 555, 508, 2364, 172.16.4.18, James Carter, 555, 324, 8719, 192.168.0.99, Ella Patterson, 555, 478, 9023, 10.0.3.29, Alexander Vaughn, 555, 637, 4820, 172.16.6.30, Grace Mitchell, 555, 764, 3291, 192.168.1.44, Lucas Wright, 555, 208, 5394, 10.0.0.75, Victoria Sanders, 555, 194, 2867, 172.16.7.49, Henry Bishop, 555, 803, 7461, 192.168.1.77, Amelia Cross, 555, 612, 4870, 10.0.1.99, Daniel Harper, 555, 501, 8732, 172.16.8.21, Natalie Clarke, 555, 876, 4103, 192.168.0.12, Sebastian King, 555, 290, 3647, 10.0.2.56, Hannah Lane, 555, 873, 2941, 172.16.4.63, Andrew Simmons, 555, 362, 7059, 192.168.1.20, Madeline Brooks, 555, 721, 8493, 10.0.3.33, Ryan Fisher, 555, 419, 2306, 172.16.5.90, Ella Thompson, 555, 309, 8516, 192.168.0.71, David Palmer, 555, 891, 0275, 10.0.1.48, Scarlett Hughes, 555, 203, 7859, 172.16.3.99, Owen Bennett, 555, 470, 3812, 192.168.1.37, Zoe Hamilton, 555, 736, 0194, 10.0.2.71, Hunter Evans, 555, 501, 2974, 172.16.6.28, Lucy Campbell, 555, 629, 5084, 192.168.0.51, Logan Rivera, 555, 847, 2063, 10.0.3.18, Chloe Murphy, 555, 312, 4768, 172.16.7.42, Mason Bryant, 555, 782, 0154, 192.168.1.83, Lily Griffin, 555, 925, 3068, 10.0.0.59, Jack Hayes, 555, 470, 2048, 172.16.8.88, Evelyn Morris, 555, 350, 8709, 192.168.0.19, Wyatt Hall, 555, 637, 0492, 10.0.1.17, Isabella Bell, 555, 419, 7851, 172.16.4.39, Matthew Cooper, 555, 907, 2145, 192.168.1.11, Harper Adams, 555, 826, 3947, 10.0.2.13, Carter Ross, 555, 304, 6215, 172.16.5.50, Madison Scott, 555, 204, 3912, 192.168.0.29, Caleb Powell, 555, 319, 8735, 10.0.3.61, Abigail Green, 555, 405, 8764, 172.16.6.77")
     }
-
-    const isAuthenticated = await auth0.isAuthenticated();
-
-    if (isAuthenticated) {
-        if (window.location.pathname.endsWith("dashboard.html")) {
-            const user = await auth0.getUser();
-            document.getElementById("welcome").innerText = `Ahoy, ${user.name || "Mysterious Pirate"}!`;
-            document.getElementById("role").innerText = "Pirate";  
-
-            document.getElementById("logout").addEventListener("click", async () => {
-                await auth0.logout({
-                    returnTo: window.location.origin + "/index.html" // Adjusts to live or local environment
-                });
-            });
-        }
-    } else {
-        if (window.location.pathname.endsWith("index.html")) {
-            document.getElementById("login").addEventListener("click", async () => {
-                await auth0.loginWithRedirect({
-                    redirect_uri: `${window.location.origin}/dashboard.html` // Dynamically handles live or local environment
-                });
-            });
-        }
+    else{
+alert("Sorry, wrong password. Please try again.")
     }
-}
-
-window.onload = initAuth0;
-
-let starterNameArray = ['Captain', 'Criminal', 'Robber', 'Executioner', 'Sailor', 'Blacksmith', 'Conqueror', 'Commander'];
-let endingNameArray = ['The Great', 'The Amazing', 'The Forgetful', 'The Lost', 'The Best', 'Supreme'];
